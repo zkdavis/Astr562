@@ -18,17 +18,28 @@ def part_a(n):
     elif (les.n == 5):
         cf = les.theta_n_5(ds1.x)
     ds1.label = "Analytical Solution for n=" + str(les.n)
-    ds1.y = cf
+    newy=[]
+    newx=[]
+    if(cf is not None):
+        for ii in range(len(cf)):
+            if(ii%1000==0):
+                newy.append(cf[ii])
+                newx.append(ds1.x[ii])
+    ds1.y = newy
+    ds1.x = newx
+    ds1.plot_type=PL.dataset.scattertype
     ds2 = PL.dataset()
     ds2.x = les.x
     ds2.y = les.theta
+    ds2.plot_type=PL.dataset.plottype
     ds2.color = 'y'
     ds2.label = "Runge kutta dx=" + str(np.abs(les.x[1] - les.x[0]))
     if (cf is not None):
         datasets.append(ds1)
     datasets.append(ds2)
-    figret = pl.Plot(datasets=datasets, plot_type=pl.plot_type, xscale='linear', yscale='linear')
-    figret.pyplt.show()
+    figret = pl.Plot(datasets=datasets, xscale='linear', yscale='linear',ylable=r"$\theta$",xlabel="x",title="Lane-Emden Solution for n="+str(n))
+    figret.pyplt.savefig("problem1an="+str(n))
+
 
 def part_b():
     gamma=5/3
@@ -96,6 +107,6 @@ def part_d(solar_m):
     print("R: " + str(R))
 
 part_d(1)
-part_c(1)
-part_b()
-#part_a(3)
+#part_c(1)
+#part_b()
+#part_a(1)

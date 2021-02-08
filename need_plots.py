@@ -20,9 +20,13 @@ class figret:
 
 
 class dataset:
+    plottype = "plot"
+    scattertype = "scatter"
     def __init__(self):
         self.x = None
         self.y = None
+        self.plot_type=None
+
         self.label = None
         self.color = None
         self.marker = None
@@ -42,7 +46,7 @@ class Plotter:
         self.markers = itertools.cycle((',', '+', '.', 'o', '*'))
         self.colors = itertools.cycle(['b', 'g', 'r', 'c', 'm', 'y', 'k', 'tab:purple', 'tab:gray', 'tab:orange'])
 
-    def Plot(self, datasets: [dataset], plot_type="scatter", title="Plot",
+    def Plot(self, datasets: [dataset], title="Plot",
              xlabel=r"X-axis", ylable=r"Y-axis", xscale="log", yscale="log", figsize=15, maxy=None, miny=None,
              maxx=None, minx=None, fig=None, ax=None, pyplt=None):
         if (pyplt == None):
@@ -61,42 +65,42 @@ class Plotter:
 
         for ds in datasets:
             if ds.color != None and ds.marker != None and ds.label != None:
-                if plot_type==self.plot_type:
+                if ds.plot_type==dataset.plottype:
                     ax.plot(ds.x, ds.y, c=ds.color, marker=ds.marker, label=ds.label)
                 else:
                     ax.scatter(ds.x, ds.y, c=ds.color, marker=ds.marker, label=ds.label)
             if ds.color == None and ds.marker != None and ds.label != None:
-                if plot_type==self.plot_type:
+                if ds.plot_type==dataset.plottype:
                     ax.plot(ds.x, ds.y, marker=ds.marker, label=ds.label)
                 else:
                     ax.scatter(ds.x, ds.y, marker=ds.marker, label=ds.label)
             if ds.color != None and ds.marker == None and ds.label != None:
-                if plot_type==self.plot_type:
+                if ds.plot_type==dataset.plottype:
                     ax.plot(ds.x, ds.y, c=ds.color, label=ds.label)
                 else:
                     ax.scatter(ds.x, ds.y, c=ds.color, label=ds.label)
             if ds.color != None and ds.marker != None and ds.label == None:
-                if plot_type==self.plot_type:
+                if ds.plot_type==dataset.plottype:
                     ax.plot(ds.x, ds.y, c=ds.color, marker=ds.marker)
                 else:
                     ax.scatter(ds.x, ds.y, c=ds.color, marker=ds.marker)
             if ds.color == None and ds.marker == None and ds.label != None:
-                if plot_type==self.plot_type:
+                if ds.plot_type==dataset.plottype:
                     ax.plot(ds.x, ds.y, label=ds.label)
                 else:
                     ax.scatter(ds.x, ds.y, label=ds.label)
             if ds.color == None and ds.marker != None and ds.label == None:
-                if plot_type==self.plot_type:
+                if ds.plot_type==dataset.plottype:
                     ax.plot(ds.x, ds.y, marker=ds.marker)
                 else:
                     ax.scatter(ds.x, ds.y, marker=ds.marker)
             if ds.color != None and ds.marker == None and ds.label == None:
-                if plot_type==self.plot_type:
+                if ds.plot_type==dataset.plottype:
                     ax.plot(ds.x, ds.y, c=ds.color)
                 else:
                     ax.scatter(ds.x, ds.y, c=ds.color)
             if ds.color == None and ds.marker == None and ds.label == None:
-                if plot_type==self.plot_type:
+                if ds.plot_type==dataset.plottype:
                     ax.plot(ds.x, ds.y)
                 else:
                     ax.scatter(ds.x, ds.y)

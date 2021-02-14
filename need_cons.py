@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from astropy import constants as const
 
 c_light = const.c.cgs.value
@@ -10,3 +12,20 @@ solar_M = const.M_sun.cgs.value
 
 def solarMtoCGS(M):
     return M*solar_M
+
+def sec2min(s):
+    return s/60
+def sec2hour(s):
+    return sec2min(s)/60
+def sec2day(s):
+    return sec2hour(s)/24
+def sec2year(s):
+    return sec2day(s)/365
+def num2science(n):
+    a = '%E' % n
+    return a.split('E')[0].rstrip('0').rstrip('.') + 'E' + a.split('E')[1]
+
+def arcsec2deg(arcsec):
+    return arcsec/(3600)
+def lightyears2cgs(ly):
+    return 9.461e+17*ly

@@ -63,64 +63,66 @@ class Plotter:
         if (miny != None or minx != None or maxx != None or maxy != None):
             ax.set_ylim(miny, maxy)
             ax.set_xlim(minx, maxx)
-
+        plots=[]
         for ds in datasets:
+            pl = None
             if ds.color != None and ds.marker != None and ds.label != None and ds.marker_size != None:
                 if ds.plot_type == dataset.plottype:
-                    ax.plot(ds.x, ds.y, c=ds.color, marker=ds.marker, label=ds.label,s=ds.marker_size)
+                    pl=ax.plot(ds.x, ds.y, c=ds.color, marker=ds.marker, label=ds.label,s=ds.marker_size)
                 else:
-                    ax.scatter(ds.x, ds.y, c=ds.color, marker=ds.marker, label=ds.label,s=ds.marker_size)
+                    pl=ax.scatter(ds.x, ds.y, c=ds.color, marker=ds.marker, label=ds.label,s=ds.marker_size)
             if ds.color != None and ds.marker != None and ds.label != None:
                 if ds.plot_type==dataset.plottype:
-                    ax.plot(ds.x, ds.y, c=ds.color, marker=ds.marker, label=ds.label)
+                    pl=ax.plot(ds.x, ds.y, c=ds.color, marker=ds.marker, label=ds.label)
                 else:
-                    ax.scatter(ds.x, ds.y, c=ds.color, marker=ds.marker, label=ds.label)
+                    pl=ax.scatter(ds.x, ds.y, c=ds.color, marker=ds.marker, label=ds.label)
 
             if ds.color == None and ds.marker != None and ds.label != None:
                 if ds.plot_type==dataset.plottype:
-                    ax.plot(ds.x, ds.y, marker=ds.marker, label=ds.label)
+                    pl=ax.plot(ds.x, ds.y, linestyle=ds.marker, label=ds.label)
                 else:
-                    ax.scatter(ds.x, ds.y, marker=ds.marker, label=ds.label)
+                    pl = ax.scatter(ds.x, ds.y, marker=ds.marker, label=ds.label)
             if ds.color != None and ds.marker == None and ds.label != None and ds.marker_size!=None:
                 if ds.plot_type == dataset.plottype:
-                    ax.plot(ds.x, ds.y, c=ds.color, label=ds.label,s=ds.marker_size)
+                    pl=ax.plot(ds.x, ds.y, c=ds.color, label=ds.label,s=ds.marker_size)
                 else:
-                    ax.scatter(ds.x, ds.y, c=ds.color, label=ds.label,s=ds.marker_size)
+                    pl=ax.scatter(ds.x, ds.y, c=ds.color, label=ds.label,s=ds.marker_size)
             if ds.color != None and ds.marker == None and ds.label == None and ds.marker_size!=None:
                 if ds.plot_type == dataset.plottype:
-                    ax.plot(ds.x, ds.y, c=ds.color, label=ds.label,s=ds.marker_size)
+                    pl=ax.plot(ds.x, ds.y, c=ds.color, label=ds.label,s=ds.marker_size)
                 else:
-                    ax.scatter(ds.x, ds.y, c=ds.color, label=ds.label,s=ds.marker_size)
+                    pl=ax.scatter(ds.x, ds.y, c=ds.color, label=ds.label,s=ds.marker_size)
             if ds.color != None and ds.marker == None and ds.label != None and ds.marker_size==None:
                 if ds.plot_type==dataset.plottype:
-                    ax.plot(ds.x, ds.y, c=ds.color, label=ds.label)
+                    pl=ax.plot(ds.x, ds.y, c=ds.color, label=ds.label)
                 else:
-                    ax.scatter(ds.x, ds.y, c=ds.color, label=ds.label)
+                    pl=ax.scatter(ds.x, ds.y, c=ds.color, label=ds.label)
             if ds.color != None and ds.marker != None and ds.label == None:
                 if ds.plot_type==dataset.plottype:
-                    ax.plot(ds.x, ds.y, c=ds.color, linestyle=ds.marker)
+                    pl=ax.plot(ds.x, ds.y, c=ds.color, linestyle=ds.marker)
                 else:
-                    ax.scatter(ds.x, ds.y, c=ds.color, marker=ds.marker)
+                    pl=ax.scatter(ds.x, ds.y, c=ds.color, marker=ds.marker)
             if ds.color == None and ds.marker == None and ds.label != None:
                 if ds.plot_type==dataset.plottype:
-                    ax.plot(ds.x, ds.y, label=ds.label)
+                    pl=ax.plot(ds.x, ds.y, label=ds.label)
                 else:
-                    ax.scatter(ds.x, ds.y, label=ds.label)
+                    pl=ax.scatter(ds.x, ds.y, label=ds.label)
             if ds.color == None and ds.marker != None and ds.label == None:
                 if ds.plot_type==dataset.plottype:
-                    ax.plot(ds.x, ds.y, marker=ds.marker)
+                    pl=ax.plot(ds.x, ds.y, marker=ds.marker)
                 else:
-                    ax.scatter(ds.x, ds.y, marker=ds.marker)
+                    pl=ax.scatter(ds.x, ds.y, marker=ds.marker)
             if ds.color != None and ds.marker == None and ds.label == None and ds.marker_size==None:
                 if ds.plot_type==dataset.plottype:
-                    ax.plot(ds.x, ds.y, c=ds.color)
+                    pl=ax.plot(ds.x, ds.y, c=ds.color)
                 else:
-                    ax.scatter(ds.x, ds.y, c=ds.color)
+                    pl=ax.scatter(ds.x, ds.y, c=ds.color)
             if ds.color == None and ds.marker == None and ds.label == None:
                 if ds.plot_type==dataset.plottype:
-                    ax.plot(ds.x, ds.y)
+                    pl=ax.plot(ds.x, ds.y)
                 else:
-                    ax.scatter(ds.x, ds.y)
+                    pl=ax.scatter(ds.x, ds.y)
+            plots.append(pl)
 
         handles, labels = ax.get_legend_handles_labels()
         # if len(datasets) > 8:
@@ -182,4 +184,4 @@ class Plotter:
         # else:
         ax.legend(handles, labels, loc="best", prop={'size': 10})
 
-        return figret(fig, ax, pyplt, None)
+        return figret(fig, ax, pyplt, plots[0])

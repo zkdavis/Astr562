@@ -10,6 +10,9 @@ mp = const.m_p.cgs.value
 G = const.G.cgs.value
 solar_M = const.M_sun.cgs.value
 
+def ev2ergs(ev):
+    return ev/6.242e+11
+
 def solarMtoCGS(M):
     return M*solar_M
 
@@ -21,6 +24,15 @@ def sec2day(s):
     return sec2hour(s)/24
 def sec2year(s):
     return sec2day(s)/365
+def min2sec(s):
+    return s*60
+def hour2sec(s):
+    return min2sec(s)*60
+def day2sec(s):
+    return hour2sec(s)*24
+def year2sec(s):
+    return day2sec(s)*365
+
 def num2science(n):
     a = '%E' % n
     return a.split('E')[0].rstrip('0').rstrip('.') + 'E' + a.split('E')[1]
@@ -29,3 +41,8 @@ def arcsec2deg(arcsec):
     return arcsec/(3600)
 def lightyears2cgs(ly):
     return 9.461e+17*ly
+
+def MBtolum(mb):
+    L0=3.0128e35
+    L = L0*(10**(-0.4*mb))
+    return L

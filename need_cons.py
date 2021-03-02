@@ -9,6 +9,9 @@ me = const.m_e.cgs.value
 mp = const.m_p.cgs.value
 G = const.G.cgs.value
 solar_M = const.M_sun.cgs.value
+k_boltz = const.k_B.cgs.value
+L_solar = const.L_sun.cgs.value
+sig_sb = const.sigma_sb.cgs.value
 
 def ev2ergs(ev):
     return ev/6.242e+11
@@ -46,3 +49,6 @@ def MBtolum(mb):
     L0=3.0128e35
     L = L0*(10**(-0.4*mb))
     return L
+
+def AU2cm(au):
+    return 1.496e+13*au

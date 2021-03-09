@@ -15,10 +15,12 @@ sig_sb = const.sigma_sb.cgs.value
 
 def ev2ergs(ev):
     return ev/6.242e+11
-
 def solarMtoCGS(M):
     return M*solar_M
-
+def parsec2cm(parsec):
+    return parsec*3.086e18
+def cm2parsec(cm):
+    return cm/3.086e18
 def sec2min(s):
     return s/60
 def sec2hour(s):

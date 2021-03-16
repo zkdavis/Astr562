@@ -31,12 +31,12 @@ def sec2year(s):
     return sec2day(s)/365
 def min2sec(s):
     return s*60
-def hour2sec(s):
-    return min2sec(s)*60
-def day2sec(s):
-    return hour2sec(s)*24
+def hour2sec(h):
+    return min2sec(60)*h
+def day2sec(d):
+    return hour2sec(24)*d
 def year2sec(s):
-    return day2sec(s)*365
+    return day2sec(365)*s
 
 def num2science(n):
     a = '%E' % n

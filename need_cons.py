@@ -12,6 +12,7 @@ solar_M = const.M_sun.cgs.value
 k_boltz = const.k_B.cgs.value
 L_solar = const.L_sun.cgs.value
 sig_sb = const.sigma_sb.cgs.value
+e_charge = const.e.gauss.value
 
 def ev2ergs(ev):
     return ev/6.242e+11

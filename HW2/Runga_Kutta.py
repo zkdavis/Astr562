@@ -17,7 +17,8 @@ def iteration(f, x: iter, y: iter, i: int, order: int = 4) -> iter:
         if(len(y)>(i+1)):
             y[i+1] = y[i] + tval
         else:
-            y.append(y[i] + tval)
+            y= np.append(y,[y[i]+tval])
+            #y.append(y[i] + tval)
     else:
         if (len(y) > (i + 1)):
             y[i + 1] = y[i] + dx * k2

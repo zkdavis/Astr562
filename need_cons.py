@@ -17,6 +17,8 @@ R_solar = const.R_sun.cgs.value
 sig_t = const.sigma_T.cgs.value
 def ev2ergs(ev):
     return ev/6.242e+11
+def ergs2ev(ergs):
+    return ergs*6.242e+11
 def solarMtoCGS(M):
     return M*solar_M
 def parsec2cm(parsec):
